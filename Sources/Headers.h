@@ -1,0 +1,13 @@
+#pragma once
+#include <iostream>
+#include <SFML\Graphics.hpp>
+#include <SFML\Window.hpp>
+#include <SFML\System.hpp>
+#include <cmath>
+#include <cstdlib>
+#include <vector>
+#include "Bullet.cpp"
+#include "Player.cpp"
+#include "Enemy.cpp"
+#include "Resources.cpp"
+#include "Game.cpp"
