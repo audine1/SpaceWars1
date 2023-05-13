@@ -1,0 +1,9 @@
+﻿  Main.cpp
+C:\Users\User\OneDrive\Рабочий стол\space wars\Sources\Main.cpp(127,86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\OneDrive\Рабочий стол\space wars\Sources\Main.cpp(263,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\OneDrive\Рабочий стол\space wars\Sources\Main.cpp(283,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\OneDrive\Рабочий стол\space wars\Sources\Main.cpp(314,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\OneDrive\Рабочий стол\space wars\Sources\Main.cpp(343,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\OneDrive\Рабочий стол\space wars\Sources\Main.cpp(349,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\OneDrive\Рабочий стол\space wars\Sources\Main.cpp(370,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  doodle.vcxproj -> C:\Users\User\OneDrive\Рабочий стол\space wars\Debug\doodle.exe
