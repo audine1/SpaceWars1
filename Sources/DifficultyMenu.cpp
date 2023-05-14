@@ -5,6 +5,7 @@ DifficultyMenu::DifficultyMenu() {}
 DifficultyMenu::DifficultyMenu(float width, float height)
 {
 	difficulty = new Text[MAX_NUMBER_OF_ITEMS1];
+	font.loadFromFile("Resources/arialbd.ttf");
 
 	difficulty[0].setFont(font);
 	difficulty[0].setFillColor(Color::White);
@@ -31,55 +32,55 @@ DifficultyMenu::DifficultyMenu(float width, float height)
 
 DifficultyMenu::~DifficultyMenu() { delete[] difficulty; }
 
-void DifficultyMenu::Run(RenderWindow& window)
+void DifficultyMenu::Run(RenderWindow& Difficulty)
 {
-	window.clear();
-	while (window.isOpen())
+	while (Difficulty.isOpen())
 	{
 		Event event;
-
-		while (window.pollEvent(event))
+		while (Difficulty.pollEvent(event))
 		{
-			switch (event.type)
+			if (event.type == Event::Closed)
 			{
-			case Event::KeyReleased:
-				switch (event.key.code)
+				Difficulty.close();
+			}
+
+			if (event.type == Event::KeyReleased)
+			{
+				if (event.key.code == Keyboard::Up)
 				{
-				case Keyboard::Up:
 					MoveUp();
 					break;
-
-				case Keyboard::Down:
+				}
+				if (event.key.code == Keyboard::Down)
+				{
 					MoveDown();
 					break;
-
-				case Keyboard::Return:
-					switch (GetPressedItem())
-					{
-					case 0:
-						//setDifficultyEasy
-						break;
-					case 1:
-						//cout << "Option button has been pressed" << endl;
-						break;
-					case 2:
-						window.close();
-						break;
-					}
-					break;
 				}
+				if (event.key.code == Keyboard::Return)
+				{
+					int x = GetPressedItem();
+					if (x == 0)
+					{
 
-				break;
-			case Event::Closed:
-				window.close();
+					}
+					if (x == 1)
+					{
+						
+					}
+					if (x == 2)
+					{
 
-				break;
+					}
+					if (x == 3)
+					{
+						Difficulty.close();
+					}
+				}
 			}
 		}
-
-		window.clear();
-		draw(window);
-		window.display();
+		Difficulty.clear();
+		draw(Difficulty);
+		Difficulty.display();
 	}
 }
 

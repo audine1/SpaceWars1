@@ -34,46 +34,46 @@ void Menu::Run(RenderWindow& window)
 	while (window.isOpen())
 	{
 		Event event;
-
 		while (window.pollEvent(event))
 		{
-			switch (event.type)
+			if (event.type == Event::Closed)
 			{
-			case Event::KeyReleased:
-				switch (event.key.code)
+				window.close();
+			}
+
+			if (event.type == Event::KeyReleased)
+			{
+				if (event.key.code == Keyboard::Up)
 				{
-				case Keyboard::Up:
 					MoveUp();
 					break;
-
-				case Keyboard::Down:
+				}
+				if (event.key.code == Keyboard::Down)
+				{
 					MoveDown();
 					break;
-
-				case Keyboard::Return:
-					switch (GetPressedItem())
-					{
-					case 0:
-						game.Run(window);
-						break;
-					case 1:
-						difficultyMenu.Run(window);
-						break;
-					case 2:
-						window.close();
-						break;
-					}
-					break;
 				}
-
-				break;
-			case Event::Closed:
-				window.close();
-
-				break;
+				if (event.key.code == Keyboard::Return)
+				{
+					int x = GetPressedItem();
+					if (x == 0)
+					{
+						Game game;
+						game.Run(window);
+					}
+					if (x == 1)
+					{
+						RenderWindow Difficulty(VideoMode(800, 600), "DIFFICULTY");
+						Difficulty.setFramerateLimit(60);
+						difficultyMenu.Run(Difficulty);
+					}
+					if (x == 2)
+					{
+						window.close();
+					}
+				}
 			}
 		}
-
 		window.clear();
 		draw(window);
 		window.display();

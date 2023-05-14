@@ -9,7 +9,7 @@ const int MAX_NUMBER_OF_ITEMS = 3;
 class Menu
 {
 private:
-	DifficultyMenu difficultyMenu;
+	DifficultyMenu difficultyMenu = DifficultyMenu(800, 600);
 	Game game;
 	int selectedItemIndex;
 	Font font;

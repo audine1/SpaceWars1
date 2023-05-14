@@ -1,6 +1,5 @@
 #include "Game.h"
 
-
 Game::Game() {}
 
 void Game::Run(RenderWindow& window)
@@ -8,30 +7,11 @@ void Game::Run(RenderWindow& window)
 	player = Player(&resources.playerTex);
 	while (window.isOpen())
 	{
-		while (window.pollEvent(event))
-		{
-			if (event.type == Event::Closed)
-			{
-				window.close();
-			}
-		}
+		Menu(window);
 		if (player.GetHP() > 0)
 		{
-			player.move();
-			player.windowCollision(window); //Collision with window
-			resources.hpText.setPosition(player.GetPlayerShape().getPosition().x, player.GetPlayerShape().getPosition().y - resources.hpText.getGlobalBounds().height);
-			resources.hpText.setString(to_string(player.GetHP()) + "/" + to_string(player.GetHPMax()));
-
-			if (player.GetShootTimer() < 15)
-			{
-				player.ShootTimerInc();
-			}
-
-			if (Mouse::isButtonPressed(Mouse::Left) && player.GetShootTimer() >= 15) //Shooting
-			{
-				bullets.push_back(Bullet(&resources.bulletTex, player.GetPlayerShape().getPosition()));
-				player.SetShootTimer(0); //reset timer
-			}
+			PlayerFunc(window);
+			Shoot();
 			Bullets(window);
 			EnemySpawner(window);
 			Enemys();

@@ -15,8 +15,8 @@ public:
 	inline DifficultyMenu(float width, float height);
 	inline ~DifficultyMenu();
 
-	inline void Run(RenderWindow& window);
-	inline void draw(RenderWindow& window);
+	inline void Run(RenderWindow& Difficulty);
+	inline void draw(RenderWindow& Difficulty);
 	inline void MoveUp();
 	inline void MoveDown();
 	inline int GetPressedItem() { return selectedItemIndex; }

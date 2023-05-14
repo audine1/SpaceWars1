@@ -12,3 +12,4 @@
 #include "Resources.cpp"
 #include "Game.cpp"
 #include "Menu.cpp"
+#include "DifficultyMenu.cpp"
