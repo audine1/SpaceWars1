@@ -1,64 +1,56 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu()
+using namespace sf;
+Menu::Menu(float width, float height)
 {
-	mainMenu = new Text[MaxMainMenu];
+	menu = new Text[MAX_NUMBER_OF_ITEMS];
 	font.loadFromFile("Resources/arialbd.ttf");
 
-	//Play
-	mainMenu[0].setFont(font);
-	mainMenu[0].setFillColor(Color::White);
-	mainMenu[0].setString("Play");
-	mainMenu[0].setCharacterSize(70);
-	mainMenu[0].setPosition(400, 200);
-	//Options
-	mainMenu[1].setFont(font);
-	mainMenu[1].setFillColor(Color::White);
-	mainMenu[1].setString("Dificulty");
-	mainMenu[1].setCharacterSize(70);
-	mainMenu[1].setPosition(400, 200);
-	//Exit
-	mainMenu[2].setFont(font);
-	mainMenu[2].setFillColor(Color::White);
-	mainMenu[2].setString("Exit");
-	mainMenu[2].setCharacterSize(70);
-	mainMenu[2].setPosition(400, 400);
+	menu[0].setFont(font);
+	menu[0].setFillColor(Color::Red);
+	menu[0].setString("Play");
+	menu[0].setPosition(Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 1));
 
-	mainMenuSelected = -1;
+	menu[1].setFont(font);
+	menu[1].setFillColor(Color::White);
+	menu[1].setString("Options");
+	menu[1].setPosition(Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
+
+	menu[2].setFont(font);
+	menu[2].setFillColor(Color::White);
+	menu[2].setString("Exit");
+	menu[2].setPosition(Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 3));
+
+	selectedItemIndex = 0;
 }
 
-void MainMenu::Draw(RenderWindow& window)
+
+Menu::~Menu() { delete[] menu; }
+
+void Menu::draw(sf::RenderWindow& window)
 {
-	for (int i = 0; i < MaxMainMenu; i++)
+	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 	{
-		window.draw(mainMenu[i]);
+		window.draw(menu[i]);
 	}
 }
 
-void MainMenu::MoveUp()
+void Menu::MoveUp()
 {
-	if (mainMenuSelected - 1 >= 0)
+	if (selectedItemIndex - 1 >= 0)
 	{
-		mainMenu[mainMenuSelected].setFillColor(Color::White);
+		menu[selectedItemIndex].setFillColor(Color::White);
+		selectedItemIndex--;
+		menu[selectedItemIndex].setFillColor(Color::Red);
 	}
-	mainMenuSelected--;
-	if (mainMenuSelected == -1)
-	{
-		mainMenuSelected = 2;
-	}
-	mainMenu[mainMenuSelected].setFillColor(Color::Blue);
 }
 
-void MainMenu::MoveDown()
+void Menu::MoveDown()
 {
-	if (mainMenuSelected - 1 <= MaxMainMenu)
+	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
 	{
-		mainMenu[mainMenuSelected].setFillColor(Color::White);
-		mainMenuSelected--;
-		if (mainMenuSelected == 4)
-		{
-			mainMenuSelected = 0;
-		}
-		mainMenu[mainMenuSelected].setFillColor(Color::Blue);
+		menu[selectedItemIndex].setFillColor(Color::White);
+		selectedItemIndex++;
+		menu[selectedItemIndex].setFillColor(Color::Red);
 	}
 }

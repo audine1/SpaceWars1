@@ -12,7 +12,7 @@ class Game
 {
 private:
 	Resources resources;
-	MainMenu mainMenu;
+	//MainMenu mainMenu;
 	Event event;
 	Player player;
 	vector<Enemy> enemies;

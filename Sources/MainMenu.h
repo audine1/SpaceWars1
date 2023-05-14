@@ -1,20 +1,22 @@
 #pragma once
-#include <SFML\Graphics.hpp>
+#include "SFML/Graphics.hpp"
 
 using namespace sf;
-const int MaxMainMenu = 3;
+const int MAX_NUMBER_OF_ITEMS = 3;
 
-class MainMenu
+class Menu
 {
 private:
-	int mainMenuSelected;
+	int selectedItemIndex;
 	Font font;
-	Text *mainMenu;
+	Text *menu = nullptr;
 public:
-	inline MainMenu();
-	inline void Draw(RenderWindow& window);
+	inline Menu(float width, float height);
+	inline ~Menu();
+
+	inline void draw(RenderWindow& window);
 	inline void MoveUp();
 	inline void MoveDown();
-	inline int MainMenuPressed();
-	inline ~MainMenu();
+	inline int GetPressedItem() { return selectedItemIndex; }
+
 };

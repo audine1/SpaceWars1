@@ -14,6 +14,6 @@ private:
 public:
 	inline Resources();
 	friend class Game;
-	inline Font& GetFont();
+	//inline Font& GetFont();
 	inline ~Resources();
 };
