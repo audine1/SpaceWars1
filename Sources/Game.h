@@ -12,6 +12,7 @@ class Game
 {
 private:
 	Resources resources;
+	MainMenu mainMenu;
 	Event event;
 	Player player;
 	vector<Enemy> enemies;
@@ -22,7 +23,7 @@ public:
 	inline void Run(RenderWindow& window);
 	inline ~Game();
 private:
-	inline void CloseWindow(RenderWindow& window);
+	inline void Menu(RenderWindow& window);
 	inline void PlayerFunc(RenderWindow& window);
 	inline void Shoot();
 	inline void EnemyCollision(int i);

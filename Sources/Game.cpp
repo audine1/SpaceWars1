@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "MainMenu.h"
+
 Game::Game() {}
 
 void Game::Run(RenderWindow& window)
@@ -6,7 +8,7 @@ void Game::Run(RenderWindow& window)
 	player = Player(&resources.playerTex);
 	while (window.isOpen())
 	{
-		CloseWindow(window);
+		Menu(window);
 		if (player.GetHP() > 0)
 		{
 			PlayerFunc(window);
@@ -23,15 +25,89 @@ void Game::Run(RenderWindow& window)
 
 Game::~Game() {}
 
-void Game::CloseWindow(RenderWindow& window)
+void Game::Menu(RenderWindow& window)
 {
 	while (window.pollEvent(event))
 	{
-		if (event.type == sf::Event::Closed)
+		if (event.type == Event::Closed)
 		{
 			window.close();
 		}
+
+		if (event.type == Event::KeyReleased)
+		{
+			if (event.key.code == Keyboard::Up)
+			{
+				mainMenu.MoveUp();
+				break;
+			}
+			if (event.key.code == Keyboard::Down)
+			{
+				mainMenu.MoveDown();
+				break;
+			}
+			if (event.key.code == Keyboard::Return)
+			{
+				RenderWindow Play(VideoMode(960, 720), "Space Wars");
+				RenderWindow Difficulty(VideoMode(960, 720), "DIFFICULTY");
+
+				int x = mainMenu.MainMenuPressed();
+				if (x == 0)
+				{
+					while (Play.isOpen())
+					{
+						Event aevent;
+						if (aevent.type == Event::Closed)
+						{
+							Play.close();
+						}
+						if (aevent.type == Event::KeyPressed)
+						{
+							if (aevent.key.code == Keyboard::Escape)
+							{
+								Play.close();
+							}
+						}
+						Difficulty.close();
+						Play.clear();
+						Play.display();
+					}
+				}
+				if (x == 1)
+				{
+					while (Difficulty.isOpen())
+					{
+						Event aevent;
+						while (Difficulty.pollEvent(aevent))
+						{
+							if (aevent.type == Event::Closed)
+							{
+								Difficulty.close();
+							}
+							if (aevent.type == Event::KeyPressed)
+							{
+								if (aevent.key.code == Keyboard::Escape)
+								{
+									Difficulty.close();
+								}
+							}
+						}
+						Play.close();
+						Difficulty.clear();
+						Difficulty.display();
+					}
+				}
+				if (x == 3)
+				{
+					window.close();
+				}
+				break;
+			}
+		}
 	}
+	window.clear();
+	mainMenu.draw(window);
+	window.display();
 }
 
 void Game::PlayerFunc(RenderWindow& window)
