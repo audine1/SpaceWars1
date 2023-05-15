@@ -3,6 +3,7 @@
 #include "Resources.h"
 #include "Player.h"
 #include "EnemyEasy.h"
+#include "Enemy.h"
 #include "Bullet.h"
 
 using namespace std;
@@ -12,15 +13,14 @@ class Game
 {
 private:
 	Resources resources;
-	//MainMenu mainMenu;
 	Event event;
 	Player player;
-	vector<Enemy> enemies;
+	vector<Enemy*> enemies;
 	vector<Bullet> bullets;
 	int enemySpawnTimer = 0;
 public:
 	inline Game();
-	inline void Run(RenderWindow& window);
+	inline void Run(RenderWindow& window, Enemy* enemy);
 	inline ~Game();
 private:
 	inline void Menu(RenderWindow& window);
@@ -28,7 +28,7 @@ private:
 	inline void Shoot();
 	inline void EnemyCollision(int i);
 	inline void Bullets(RenderWindow& window);
-	inline void EnemySpawner(RenderWindow& window);
+	inline void EnemySpawner(RenderWindow& window, Enemy* enemy);
 	inline void Enemys();
 	inline void Draw(RenderWindow& window);
 };

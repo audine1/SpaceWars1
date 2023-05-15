@@ -2,7 +2,7 @@
 
 Game::Game() {}
 
-void Game::Run(RenderWindow& window)
+void Game::Run(RenderWindow& window, Enemy* enemy)
 {
 	player = Player(&resources.playerTex);
 	while (window.isOpen())
@@ -13,7 +13,7 @@ void Game::Run(RenderWindow& window)
 			PlayerFunc(window);
 			Shoot();
 			Bullets(window);
-			EnemySpawner(window);
+			EnemySpawner(window, enemy);
 			Enemys();
 			//UI Update
 			resources.scoreText.setString("Score: " + to_string(player.GetScore()));
@@ -61,11 +61,11 @@ void Game::EnemyCollision(int i)
 {
 	for (int k = 0; k < enemies.size(); k++)
 	{
-		if (bullets[i].GetShape().getGlobalBounds().intersects(enemies[k].GetEnemyShape().getGlobalBounds()))
+		if (bullets[i].GetShape().getGlobalBounds().intersects(enemies[k]->GetEnemyShape().getGlobalBounds()))
 		{
-			if (enemies[k].GetHP() <= 1)
+			if (enemies[k]->GetHP() <= 1)
 			{
-				player.ScoreInc(enemies[k].GetHPMax());
+				player.ScoreInc(enemies[k]->GetHPMax());
 				enemies.erase(enemies.begin() + k);
 			}
 			else
@@ -93,7 +93,7 @@ void Game::Bullets(RenderWindow& window)
 	}
 }
 
-void Game::EnemySpawner(RenderWindow& window)
+void Game::EnemySpawner(RenderWindow& window, Enemy* enemy)
 {
 	//Enemy
 	if (enemySpawnTimer < 25)
@@ -102,7 +102,8 @@ void Game::EnemySpawner(RenderWindow& window)
 	//enemy spawn
 	if (enemySpawnTimer >= 25)
 	{
-		enemies.push_back(Enemy(&resources.enemyTex, window.getSize()));
+		enemy->Spawn(&resources.enemyTex, window.getSize());
+		enemies.push_back(enemy);
 		enemySpawnTimer = 0; //reset timer
 	}
 }
@@ -111,15 +112,15 @@ void Game::Enemys()
 {
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		enemies[i].Move();
+		enemies[i]->Move();
 
-		if (enemies[i].GetEnemyShape().getPosition().x <= 0 - enemies[i].GetEnemyShape().getGlobalBounds().width)
+		if (enemies[i]->GetEnemyShape().getPosition().x <= 0 - enemies[i]->GetEnemyShape().getGlobalBounds().width)
 		{
 			enemies.erase(enemies.begin() + i);
 			break;
 		}
 
-		if (enemies[i].GetEnemyShape().getGlobalBounds().intersects(player.GetPlayerShape().getGlobalBounds()))
+		if (enemies[i]->GetEnemyShape().getGlobalBounds().intersects(player.GetPlayerShape().getGlobalBounds()))
 		{
 			enemies.erase(enemies.begin() + i);
 
@@ -145,10 +146,10 @@ void Game::Draw(RenderWindow& window)
 	//enemy
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		resources.eHpText.setString(to_string(enemies[i].GetHP()) + "/" + to_string(enemies[i].GetHPMax()));
-		resources.eHpText.setPosition(enemies[i].GetEnemyShape().getPosition().x, enemies[i].GetEnemyShape().getPosition().y - resources.eHpText.getGlobalBounds().height + 15);
+		resources.eHpText.setString(to_string(enemies[i]->GetHP()) + "/" + to_string(enemies[i]->GetHPMax()));
+		resources.eHpText.setPosition(enemies[i]->GetEnemyShape().getPosition().x, enemies[i]->GetEnemyShape().getPosition().y - resources.eHpText.getGlobalBounds().height + 15);
 		window.draw(resources.eHpText);
-		window.draw(enemies[i].GetEnemyShape());
+		window.draw(enemies[i]->GetEnemyShape());
 	}
 
 	//UI

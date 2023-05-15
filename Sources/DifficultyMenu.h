@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Enemy.h"
+#include "EnemyEasy.h"
 
 using namespace sf;
 const int MAX_NUMBER_OF_ITEMS1 = 4;
@@ -15,7 +17,7 @@ public:
 	inline DifficultyMenu(float width, float height);
 	inline ~DifficultyMenu();
 
-	inline void Run(RenderWindow& Difficulty);
+	inline void Run(RenderWindow& Difficulty, Enemy* enemy);
 	inline void draw(RenderWindow& Difficulty);
 	inline void MoveUp();
 	inline void MoveDown();

@@ -10,12 +10,14 @@ private:
 	int HP;
 	int HPMax;
 public:
-
+	inline EnemyEasy();
 	inline EnemyEasy(Texture* texture, Vector2u windowSize);
-	inline Sprite GetEnemyShape();
-	inline int GetHP();
-	inline int GetHPMax();
-	inline void operator-- ();
-	inline void Move();
-	inline ~EnemyEasy();
+	inline void Spawn(Texture* texture, Vector2u windowSize) override;
+	inline void Shoot() override;
+	inline Sprite GetEnemyShape() override;
+	inline int GetHP() override;
+	inline int GetHPMax() override;
+	inline void operator-- () override;
+	inline void Move() override;
+	inline ~EnemyEasy() override;
 };

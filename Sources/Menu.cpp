@@ -58,14 +58,19 @@ void Menu::Run(RenderWindow& window)
 					int x = GetPressedItem();
 					if (x == 0)
 					{
+						EnemyEasy enemyEasy;
+						if (enemy == nullptr)
+						{
+							enemy = dynamic_cast<Enemy*>(&enemyEasy);
+						}
 						Game game;
-						game.Run(window);
+						game.Run(window, enemy);
 					}
 					if (x == 1)
 					{
 						RenderWindow Difficulty(VideoMode(800, 600), "DIFFICULTY");
 						Difficulty.setFramerateLimit(60);
-						difficultyMenu.Run(Difficulty);
+						difficultyMenu.Run(Difficulty, enemy);
 					}
 					if (x == 2)
 					{
