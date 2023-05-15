@@ -4,17 +4,12 @@ using namespace sf;
 
 class Enemy
 {
-private:
-	Sprite shape;
-	int HP;
-	int HPMax;
 public:
-
-	inline Enemy(Texture* texture, Vector2u windowSize);
-	inline Sprite GetEnemyShape();
-	inline int GetHP();
-	inline int GetHPMax();
-	inline void operator-- ();
-	inline void Move();
-	inline ~Enemy();
+	virtual Sprite GetEnemyShape() = 0;
+	virtual void Shoot() = 0;
+	virtual int GetHP() = 0;
+	virtual int GetHPMax() = 0;
+	virtual void operator--() = 0;
+	virtual void Move() = 0;
+	virtual ~Enemy() {}
 };

@@ -8,7 +8,7 @@
 #include <vector>
 #include "Bullet.cpp"
 #include "Player.cpp"
-#include "Enemy.cpp"
+#include "EnemyEasy.cpp"
 #include "Resources.cpp"
 #include "Game.cpp"
 #include "Menu.cpp"

@@ -61,15 +61,15 @@ void DifficultyMenu::Run(RenderWindow& Difficulty)
 					int x = GetPressedItem();
 					if (x == 0)
 					{
-
+						Difficulty.close();
 					}
 					if (x == 1)
 					{
-						
+						Difficulty.close();
 					}
 					if (x == 2)
 					{
-
+						Difficulty.close();
 					}
 					if (x == 3)
 					{
@@ -84,11 +84,11 @@ void DifficultyMenu::Run(RenderWindow& Difficulty)
 	}
 }
 
-void DifficultyMenu::draw(RenderWindow& window)
+void DifficultyMenu::draw(RenderWindow& Difficulty)
 {
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS1; i++)
 	{
-		window.draw(difficulty[i]);
+		Difficulty.draw(difficulty[i]);
 	}
 }
 

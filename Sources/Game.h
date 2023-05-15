@@ -2,7 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include "Resources.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "EnemyEasy.h"
 #include "Bullet.h"
 
 using namespace std;
