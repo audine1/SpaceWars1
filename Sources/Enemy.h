@@ -6,7 +6,6 @@ using namespace sf;
 class Enemy
 {
 public:
-	virtual void Spawn(Texture* texture, Vector2u windowSize) = 0;
 	virtual Sprite GetEnemyShape() = 0;
 	virtual void Shoot() = 0;
 	virtual int GetHP() = 0;

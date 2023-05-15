@@ -1,8 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Game.h"
-#include "Enemy.h"
-#include "EnemyEasy.h"
 #include "DifficultyMenu.h"
 
 using namespace sf;
@@ -17,12 +15,12 @@ private:
 	Font font;
 	Text* menu = nullptr;
 public:
-	Enemy* enemy = nullptr;
 	inline Menu();
 	inline Menu(float width, float height);
 	inline ~Menu();
 
 	inline void Run(RenderWindow& window);
+private:
 	inline void draw(RenderWindow& window);
 	inline void MoveUp();
 	inline void MoveDown();

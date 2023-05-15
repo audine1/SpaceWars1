@@ -2,7 +2,7 @@
 
 Game::Game() {}
 
-void Game::Run(RenderWindow& window, Enemy* enemy)
+void Game::Run(RenderWindow& window, int& selectedEnemyType)
 {
 	player = Player(&resources.playerTex);
 	while (window.isOpen())
@@ -13,7 +13,7 @@ void Game::Run(RenderWindow& window, Enemy* enemy)
 			PlayerFunc(window);
 			Shoot();
 			Bullets(window);
-			EnemySpawner(window, enemy);
+			EnemySpawner(window, selectedEnemyType);
 			Enemys();
 			//UI Update
 			resources.scoreText.setString("Score: " + to_string(player.GetScore()));
@@ -69,7 +69,7 @@ void Game::EnemyCollision(int i)
 				enemies.erase(enemies.begin() + k);
 			}
 			else
-				--enemies[k]; //ENEMY TAKE DAMAGE
+				--(*enemies[k]); //ENEMY TAKE DAMAGE
 
 			bullets.erase(bullets.begin() + i);
 			break;
@@ -93,7 +93,7 @@ void Game::Bullets(RenderWindow& window)
 	}
 }
 
-void Game::EnemySpawner(RenderWindow& window, Enemy* enemy)
+void Game::EnemySpawner(RenderWindow& window, int& selectedEnemyType)
 {
 	//Enemy
 	if (enemySpawnTimer < 25)
@@ -102,7 +102,19 @@ void Game::EnemySpawner(RenderWindow& window, Enemy* enemy)
 	//enemy spawn
 	if (enemySpawnTimer >= 25)
 	{
-		enemy->Spawn(&resources.enemyTex, window.getSize());
+		if (selectedEnemyType == 0)
+		{
+			enemy = new EnemyEasy(&resources.enemyTex, window.getSize());
+		}
+		else if (selectedEnemyType == 1)
+		{
+			enemy = new EnemyMedium(&resources.enemyTex, window.getSize());
+		}
+		else if (selectedEnemyType == 2)
+		{
+
+		}
+		//enemy->Spawn(&resources.enemyTex, window.getSize());
 		enemies.push_back(enemy);
 		enemySpawnTimer = 0; //reset timer
 	}
@@ -123,7 +135,6 @@ void Game::Enemys()
 		if (enemies[i]->GetEnemyShape().getGlobalBounds().intersects(player.GetPlayerShape().getGlobalBounds()))
 		{
 			enemies.erase(enemies.begin() + i);
-
 			--player; // PLAYER TAKE DAMAGE
 			break;
 		}

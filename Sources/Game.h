@@ -3,6 +3,7 @@
 #include "Resources.h"
 #include "Player.h"
 #include "EnemyEasy.h"
+#include "EnemyMedium.h"
 #include "Enemy.h"
 #include "Bullet.h"
 
@@ -19,8 +20,9 @@ private:
 	vector<Bullet> bullets;
 	int enemySpawnTimer = 0;
 public:
+	Enemy *enemy;
 	inline Game();
-	inline void Run(RenderWindow& window, Enemy* enemy);
+	inline void Run(RenderWindow& window, int& selectedEnemyType);
 	inline ~Game();
 private:
 	inline void Menu(RenderWindow& window);
@@ -28,7 +30,7 @@ private:
 	inline void Shoot();
 	inline void EnemyCollision(int i);
 	inline void Bullets(RenderWindow& window);
-	inline void EnemySpawner(RenderWindow& window, Enemy* enemy);
+	inline void EnemySpawner(RenderWindow& window, int&selectedEnemyType);
 	inline void Enemys();
 	inline void Draw(RenderWindow& window);
 };

@@ -31,6 +31,7 @@ Menu::~Menu() { delete[] menu; }
 
 void Menu::Run(RenderWindow& window)
 {
+	int selectedEnemyType = 0;
 	while (window.isOpen())
 	{
 		Event event;
@@ -58,19 +59,14 @@ void Menu::Run(RenderWindow& window)
 					int x = GetPressedItem();
 					if (x == 0)
 					{
-						EnemyEasy enemyEasy;
-						if (enemy == nullptr)
-						{
-							enemy = dynamic_cast<Enemy*>(&enemyEasy);
-						}
 						Game game;
-						game.Run(window, enemy);
+						game.Run(window, selectedEnemyType);
 					}
 					if (x == 1)
 					{
 						RenderWindow Difficulty(VideoMode(800, 600), "DIFFICULTY");
 						Difficulty.setFramerateLimit(60);
-						difficultyMenu.Run(Difficulty, enemy);
+						difficultyMenu.Run(Difficulty, selectedEnemyType);
 					}
 					if (x == 2)
 					{

@@ -32,7 +32,7 @@ DifficultyMenu::DifficultyMenu(float width, float height)
 
 DifficultyMenu::~DifficultyMenu() { delete[] difficulty; }
 
-void DifficultyMenu::Run(RenderWindow& Difficulty, Enemy* enemy)
+void DifficultyMenu::Run(RenderWindow& Difficulty, int& selectedEnemyType)
 {
 	while (Difficulty.isOpen())
 	{
@@ -61,16 +61,17 @@ void DifficultyMenu::Run(RenderWindow& Difficulty, Enemy* enemy)
 					int x = GetPressedItem();
 					if (x == 0)
 					{
-						EnemyEasy enemyEasy;
-						enemy = dynamic_cast<Enemy*>(&enemyEasy);
+						selectedEnemyType = x;
 						Difficulty.close();
 					}
 					if (x == 1)
 					{
+						selectedEnemyType = x;
 						Difficulty.close();
 					}
 					if (x == 2)
 					{
+						selectedEnemyType = x;
 						Difficulty.close();
 					}
 					if (x == 3)
