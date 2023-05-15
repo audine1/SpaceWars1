@@ -108,3 +108,8 @@ void Menu::MoveDown()
 		menu[selectedItemIndex].setFillColor(Color::Red);
 	}
 }
+
+int Menu::GetPressedItem()
+{
+	return selectedItemIndex;
+}

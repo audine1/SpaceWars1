@@ -22,7 +22,13 @@ void Game::Run(RenderWindow& window, int& selectedEnemyType)
 	}
 }
 
-Game::~Game() {}
+Game::~Game()
+{
+	for (auto enemy : enemies) 
+	{
+		delete enemy;
+	}
+}
 
 void Game::Menu(RenderWindow& window)
 {
@@ -104,18 +110,16 @@ void Game::EnemySpawner(RenderWindow& window, int& selectedEnemyType)
 	{
 		if (selectedEnemyType == 0)
 		{
-			enemy = new EnemyEasy(&resources.enemyTex, window.getSize());
+			enemies.push_back(new EnemyEasy(&resources.enemyTex, window.getSize()));
 		}
 		else if (selectedEnemyType == 1)
 		{
-			enemy = new EnemyMedium(&resources.enemyTex, window.getSize());
+			enemies.push_back(new EnemyMedium(&resources.enemyTex, window.getSize()));
 		}
 		else if (selectedEnemyType == 2)
 		{
-
+			enemies.push_back(new EnemyHard(&resources.enemyTex, window.getSize()));
 		}
-		//enemy->Spawn(&resources.enemyTex, window.getSize());
-		enemies.push_back(enemy);
 		enemySpawnTimer = 0; //reset timer
 	}
 }

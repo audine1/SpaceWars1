@@ -21,5 +21,5 @@ public:
 	inline void draw(RenderWindow& Difficulty);
 	inline void MoveUp();
 	inline void MoveDown();
-	inline int GetPressedItem() { return selectedItemIndex; }
+	inline int GetPressedItem();
 };

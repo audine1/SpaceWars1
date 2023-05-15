@@ -59,17 +59,7 @@ void DifficultyMenu::Run(RenderWindow& Difficulty, int& selectedEnemyType)
 				if (event.key.code == Keyboard::Return)
 				{
 					int x = GetPressedItem();
-					if (x == 0)
-					{
-						selectedEnemyType = x;
-						Difficulty.close();
-					}
-					if (x == 1)
-					{
-						selectedEnemyType = x;
-						Difficulty.close();
-					}
-					if (x == 2)
+					if (x >= 0 && x <= 2)
 					{
 						selectedEnemyType = x;
 						Difficulty.close();
@@ -113,4 +103,9 @@ void DifficultyMenu::MoveDown()
 		selectedItemIndex++;
 		difficulty[selectedItemIndex].setFillColor(Color::Red);
 	}
+}
+
+int DifficultyMenu::GetPressedItem()
+{
+	return selectedItemIndex;
 }

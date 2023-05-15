@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "EnemyEasy.h"
 #include "EnemyMedium.h"
+#include "EnemyHard.h"
 #include "Enemy.h"
 #include "Bullet.h"
 
@@ -20,7 +21,6 @@ private:
 	vector<Bullet> bullets;
 	int enemySpawnTimer = 0;
 public:
-	Enemy *enemy;
 	inline Game();
 	inline void Run(RenderWindow& window, int& selectedEnemyType);
 	inline ~Game();

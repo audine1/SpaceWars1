@@ -17,12 +17,11 @@ private:
 public:
 	inline Menu();
 	inline Menu(float width, float height);
-	inline ~Menu();
-
 	inline void Run(RenderWindow& window);
+	inline ~Menu();
 private:
 	inline void draw(RenderWindow& window);
 	inline void MoveUp();
 	inline void MoveDown();
-	inline int GetPressedItem() { return selectedItemIndex; }
+	inline int GetPressedItem();
 };
