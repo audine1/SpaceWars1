@@ -12,11 +12,11 @@ private:
 public:
 	inline EnemyEasy();
 	inline EnemyEasy(Texture* texture, Vector2u windowSize);
+	inline ~EnemyEasy() override;
 	inline void Shoot() override;
 	inline Sprite GetEnemyShape() override;
 	inline int GetHP() override;
 	inline int GetHPMax() override;
 	inline void operator-- () override;
 	inline void Move() override;
-	inline ~EnemyEasy() override;
 };

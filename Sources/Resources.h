@@ -11,9 +11,10 @@ private:
 	Text gameOverText;
 	Text hpText;
 	Text eHpText;
+	Text escapeMenu;
 public:
 	inline Resources();
-	friend class Game;
-	//inline Font& GetFont();
 	inline ~Resources();
+	friend class Game;
+	inline Font GetFont();
 };

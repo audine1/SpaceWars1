@@ -13,6 +13,7 @@ private:
 public:
 	inline Player();
 	inline Player(Texture* texture);
+	inline ~Player();
 	inline Sprite GetPlayerShape();
 	inline int GetHP();
 	inline int GetHPMax();
@@ -24,5 +25,4 @@ public:
 	inline void ShootTimerInc();
 	inline void move();
 	inline void windowCollision(RenderWindow& window);
-	inline ~Player();
 };

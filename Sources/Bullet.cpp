@@ -7,6 +7,8 @@ Bullet::Bullet(Texture* texture, Vector2f pos)
 	shape.setPosition(pos);
 }
 
+Bullet::~Bullet() {}
+
 Sprite Bullet::GetShape()
 {
 	return shape;
@@ -16,5 +18,3 @@ void Bullet::Move()
 {
 	shape.move(20.f, 0.f);
 }
-
-Bullet::~Bullet() {}

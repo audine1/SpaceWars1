@@ -12,6 +12,8 @@ EnemyEasy::EnemyEasy(Texture* texture, Vector2u windowSize)
 	shape.setPosition(windowSize.x - shape.getGlobalBounds().width, rand() % (int)(windowSize.y - shape.getGlobalBounds().height));
 }
 
+EnemyEasy::~EnemyEasy() {}
+
 void EnemyEasy::Shoot() {}
 
 Sprite EnemyEasy::GetEnemyShape()
@@ -38,5 +40,3 @@ void EnemyEasy::Move()
 {
 	shape.move(-6.f, 0.f);
 }
-
-EnemyEasy::~EnemyEasy() {}

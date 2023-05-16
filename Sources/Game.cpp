@@ -2,6 +2,14 @@
 
 Game::Game() {}
 
+Game::~Game()
+{
+	for (auto enemy : enemies)
+	{
+		delete enemy;
+	}
+}
+
 void Game::Run(RenderWindow& window, int& selectedEnemyType)
 {
 	player = Player(&resources.playerTex);
@@ -22,14 +30,6 @@ void Game::Run(RenderWindow& window, int& selectedEnemyType)
 	}
 }
 
-Game::~Game()
-{
-	for (auto enemy : enemies) 
-	{
-		delete enemy;
-	}
-}
-
 void Game::Menu(RenderWindow& window)
 {
 	while (window.pollEvent(event))
@@ -37,6 +37,13 @@ void Game::Menu(RenderWindow& window)
 		if (event.type == Event::Closed)
 		{
 			window.close();
+		}
+		if (event.type == Event::KeyReleased)
+		{
+			if (event.key.code == Keyboard::Escape)
+			{
+				window.close();
+			}
 		}
 	}
 }
@@ -75,7 +82,9 @@ void Game::EnemyCollision(int i)
 				enemies.erase(enemies.begin() + k);
 			}
 			else
+			{
 				--(*enemies[k]); //ENEMY TAKE DAMAGE
+			}
 
 			bullets.erase(bullets.begin() + i);
 			break;
@@ -103,7 +112,9 @@ void Game::EnemySpawner(RenderWindow& window, int& selectedEnemyType)
 {
 	//Enemy
 	if (enemySpawnTimer < 25)
+	{
 		enemySpawnTimer++;
+	}
 
 	//enemy spawn
 	if (enemySpawnTimer >= 25)
@@ -172,7 +183,10 @@ void Game::Draw(RenderWindow& window)
 	window.draw(resources.hpText);
 
 	if (player.GetHP() <= 0)
+	{
 		window.draw(resources.gameOverText);
+		window.draw(resources.escapeMenu);
+	}
 
 	window.display();
 }

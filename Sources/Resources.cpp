@@ -15,7 +15,7 @@ Resources::Resources()
 	gameOverText.setFont(font);
 	gameOverText.setCharacterSize(30);
 	gameOverText.setFillColor(Color::Red);
-	gameOverText.setPosition(100.f, 300.f);
+	gameOverText.setPosition(300.f, 100.f);
 	gameOverText.setString("GAME OVER!");
 
 	hpText.setFont(font);
@@ -25,6 +25,17 @@ Resources::Resources()
 	eHpText.setFont(font);
 	eHpText.setCharacterSize(12);
 	eHpText.setFillColor(Color::White);
+
+	escapeMenu.setFont(font);
+	escapeMenu.setCharacterSize(30);
+	escapeMenu.setFillColor(Color::White);
+	escapeMenu.setPosition(250.f, 200.f);
+	escapeMenu.setString("Press Escape to exit");
 }
 
 Resources::~Resources() {}
+
+Font Resources::GetFont()
+{
+	return font;
+}

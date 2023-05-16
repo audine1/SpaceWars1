@@ -12,6 +12,8 @@ Player::Player(Texture* texture)
 	shape.setScale(0.15f, 0.15f);
 }
 
+Player::~Player() {}
+
 Sprite Player::GetPlayerShape()
 {
 	return shape;
@@ -80,5 +82,3 @@ void Player::windowCollision(RenderWindow& window)
 	if (shape.getPosition().y >= window.getSize().y - shape.getGlobalBounds().height) //Bottom
 		shape.setPosition(shape.getPosition().x, window.getSize().y - shape.getGlobalBounds().height);
 }
-
-Player::~Player() {}

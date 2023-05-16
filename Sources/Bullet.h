@@ -9,7 +9,7 @@ private:
 public:
 
 	inline Bullet(Texture* texture, Vector2f pos);
+	inline ~Bullet();
 	inline Sprite GetShape();
 	inline void Move();
-	inline ~Bullet();
 };

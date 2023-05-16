@@ -9,14 +9,15 @@ private:
 	Sprite shape;
 	int HP;
 	int HPMax;
+	int shootTimer = 0;
 public:
 	inline EnemyMedium();
 	EnemyMedium(Texture* texture, Vector2u windowSize);
+	inline ~EnemyMedium() override;
 	inline void Shoot() override;
 	inline Sprite GetEnemyShape() override;
 	inline int GetHP() override;
 	inline int GetHPMax() override;
 	inline void operator-- () override;
 	inline void Move() override;
-	inline ~EnemyMedium() override;
 };

@@ -1,36 +1,40 @@
 #include "DifficultyMenu.h"
 
+
 DifficultyMenu::DifficultyMenu() {}
 
 DifficultyMenu::DifficultyMenu(float width, float height)
 {
 	difficulty = new Text[MAX_NUMBER_OF_ITEMS1];
-	font.loadFromFile("Resources/arialbd.ttf");
+	font = resources.GetFont();
 
 	difficulty[0].setFont(font);
-	difficulty[0].setFillColor(Color::White);
+	difficulty[0].setFillColor(Color::Red);
 	difficulty[0].setString("Easy");
-	difficulty[0].setPosition(Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS1 + 1) * 1));
+	difficulty[0].setPosition(Vector2f((width / 2) - 50, height / (MAX_NUMBER_OF_ITEMS1 + 1) * 1));
 
 	difficulty[1].setFont(font);
 	difficulty[1].setFillColor(Color::White);
 	difficulty[1].setString("Medium");
-	difficulty[1].setPosition(Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS1 + 1) * 2));
+	difficulty[1].setPosition(Vector2f((width / 2) - 50, height / (MAX_NUMBER_OF_ITEMS1 + 1) * 2));
 
 	difficulty[2].setFont(font);
 	difficulty[2].setFillColor(Color::White);
 	difficulty[2].setString("Hard");
-	difficulty[2].setPosition(Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS1 + 1) * 3));
+	difficulty[2].setPosition(Vector2f((width / 2) - 50, height / (MAX_NUMBER_OF_ITEMS1 + 1) * 3));
 
 	difficulty[3].setFont(font);
 	difficulty[3].setFillColor(Color::White);
 	difficulty[3].setString("Exit");
-	difficulty[3].setPosition(Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS1 + 1) * 4));
+	difficulty[3].setPosition(Vector2f((width / 2) - 50, height / (MAX_NUMBER_OF_ITEMS1 + 1) * 4));
 
 	selectedItemIndex = 0;
 }
 
-DifficultyMenu::~DifficultyMenu() { delete[] difficulty; }
+DifficultyMenu::~DifficultyMenu() 
+{ 
+	delete[] difficulty; 
+}
 
 void DifficultyMenu::Run(RenderWindow& Difficulty, int& selectedEnemyType)
 {
@@ -46,12 +50,12 @@ void DifficultyMenu::Run(RenderWindow& Difficulty, int& selectedEnemyType)
 
 			if (event.type == Event::KeyReleased)
 			{
-				if (event.key.code == Keyboard::Up)
+				if (event.key.code == Keyboard::Up || event.key.code == Keyboard::W)
 				{
 					MoveUp();
 					break;
 				}
-				if (event.key.code == Keyboard::Down)
+				if (event.key.code == Keyboard::Down || event.key.code == Keyboard::S)
 				{
 					MoveDown();
 					break;
@@ -72,12 +76,12 @@ void DifficultyMenu::Run(RenderWindow& Difficulty, int& selectedEnemyType)
 			}
 		}
 		Difficulty.clear();
-		draw(Difficulty);
+		Draw(Difficulty);
 		Difficulty.display();
 	}
 }
 
-void DifficultyMenu::draw(RenderWindow& Difficulty)
+void DifficultyMenu::Draw(RenderWindow& Difficulty)
 {
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS1; i++)
 	{

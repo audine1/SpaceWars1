@@ -22,8 +22,8 @@ private:
 	int enemySpawnTimer = 0;
 public:
 	inline Game();
-	inline void Run(RenderWindow& window, int& selectedEnemyType);
 	inline ~Game();
+	inline void Run(RenderWindow& window, int& selectedEnemyType);
 private:
 	inline void Menu(RenderWindow& window);
 	inline void PlayerFunc(RenderWindow& window);

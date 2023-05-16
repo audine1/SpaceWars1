@@ -12,6 +12,8 @@ EnemyMedium::EnemyMedium(Texture* texture, Vector2u windowSize)
 	shape.setPosition(windowSize.x - shape.getGlobalBounds().width, rand() % (int)(windowSize.y - shape.getGlobalBounds().height));
 }
 
+EnemyMedium::~EnemyMedium() {}
+
 void EnemyMedium::Shoot() {}
 
 Sprite EnemyMedium::GetEnemyShape()
@@ -38,5 +40,3 @@ void EnemyMedium::Move()
 {
 	shape.move(-6.f, 0.f);
 }
-
-EnemyMedium::~EnemyMedium() {}
