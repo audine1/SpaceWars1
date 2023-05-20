@@ -11,6 +11,7 @@ public:
 	virtual int GetHP() = 0;
 	virtual int GetHPMax() = 0;
 	virtual void operator--() = 0;
-	virtual void Move() = 0;
+	virtual void Move(RenderWindow& window) = 0;
+	virtual Vector2f RandomMovement() = 0;
 	virtual ~Enemy() {}
 };

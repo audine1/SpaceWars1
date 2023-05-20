@@ -17,13 +17,13 @@ private:
 	Font font;
 	Text* menu = nullptr;
 public:
-	inline Menu();
-	inline Menu(float width, float height);
-	inline ~Menu();
-	inline void Run(RenderWindow& window);
+	Menu();
+	Menu(float width, float height);
+	~Menu();
+	void Run(RenderWindow& window);
 private:
-	inline void Draw(RenderWindow& window);
-	inline void MoveUp();
-	inline void MoveDown();
-	inline int GetPressedItem();
+	void Draw(RenderWindow& window);
+	void MoveUp();
+	void MoveDown();
+	int GetPressedItem();
 };

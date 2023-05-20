@@ -10,14 +10,17 @@ private:
 	int HP;
 	int HPMax;
 	int shootTimer = 0;
+	float individualTimer;
+	Vector2f velocity;
 public:
-	inline EnemyMedium();
+	EnemyMedium();
 	EnemyMedium(Texture* texture, Vector2u windowSize);
-	inline ~EnemyMedium() override;
-	inline void Shoot() override;
-	inline Sprite GetEnemyShape() override;
-	inline int GetHP() override;
-	inline int GetHPMax() override;
-	inline void operator-- () override;
-	inline void Move() override;
+	~EnemyMedium() override;
+	void Shoot() override;
+	Sprite GetEnemyShape() override;
+	int GetHP() override;
+	int GetHPMax() override;
+	void operator-- () override;
+	void Move(RenderWindow& window) override;
+	Vector2f RandomMovement() override;
 };

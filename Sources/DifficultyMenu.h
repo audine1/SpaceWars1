@@ -15,13 +15,13 @@ private:
 	Font font;
 	Text* difficulty = nullptr;
 public:
-	inline DifficultyMenu();
-	inline DifficultyMenu(float width, float height);
-	inline ~DifficultyMenu();
+	DifficultyMenu();
+	DifficultyMenu(float width, float height);
+	~DifficultyMenu();
 
-	inline void Run(RenderWindow& Difficulty, int& selectedEnemyType);
-	inline void Draw(RenderWindow& Difficulty);
-	inline void MoveUp();
-	inline void MoveDown();
-	inline int GetPressedItem();
+	void Run(RenderWindow& Difficulty, int& selectedEnemyType);
+	void Draw(RenderWindow& Difficulty);
+	void MoveUp();
+	void MoveDown();
+	int GetPressedItem();
 };

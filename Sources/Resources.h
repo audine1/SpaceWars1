@@ -6,15 +6,16 @@ class Resources
 {
 private:
 	Font font;
-	Texture playerTex, enemyTex, bulletTex;
+	Texture playerTex, bulletTex;
+	Texture enemyTexEasy, enemyTexMedium, enemyTexHard;
 	Text scoreText;
 	Text gameOverText;
 	Text hpText;
 	Text eHpText;
 	Text escapeMenu;
 public:
-	inline Resources();
-	inline ~Resources();
+	Resources();
+	~Resources();
 	friend class Game;
-	inline Font GetFont();
+	Font GetFont();
 };

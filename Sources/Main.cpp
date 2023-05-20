@@ -1,4 +1,18 @@
-﻿#include "Headers.h"
+﻿#pragma once
+#include <iostream>
+#include <SFML\Graphics.hpp>
+#include <SFML\Window.hpp>
+#include <SFML\System.hpp>
+#include <cmath>
+#include <cstdlib>
+#include <vector>
+#include "Bullet.h"
+#include "Player.h"
+#include "EnemyEasy.h"
+#include "Resources.h"
+#include "Game.h"
+#include "Menu.h"
+#include "DifficultyMenu.h"
 
 int main()
 {

@@ -21,16 +21,16 @@ private:
 	vector<Bullet> bullets;
 	int enemySpawnTimer = 0;
 public:
-	inline Game();
-	inline ~Game();
-	inline void Run(RenderWindow& window, int& selectedEnemyType);
+	Game();
+	~Game();
+	void Run(RenderWindow& window, int& selectedEnemyType);
 private:
-	inline void Menu(RenderWindow& window);
-	inline void PlayerFunc(RenderWindow& window);
-	inline void Shoot();
-	inline void EnemyCollision(int i);
-	inline void Bullets(RenderWindow& window);
-	inline void EnemySpawner(RenderWindow& window, int&selectedEnemyType);
-	inline void Enemys();
-	inline void Draw(RenderWindow& window);
+	void Menu(RenderWindow& window);
+	void PlayerFunc(RenderWindow& window);
+	void Shoot();
+	void EnemyCollision(int i);
+	void Bullets(RenderWindow& window);
+	void EnemySpawner(RenderWindow& window, int&selectedEnemyType);
+	void Enemys(RenderWindow& window);
+	void Draw(RenderWindow& window);
 };

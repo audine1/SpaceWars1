@@ -3,7 +3,9 @@
 Resources::Resources()
 {
 	playerTex.loadFromFile("Resources/spaceship.png");
-	enemyTex.loadFromFile("Resources/enemy.png");
+	enemyTexEasy.loadFromFile("Resources/enemy.png");
+	enemyTexMedium.loadFromFile("Resources/enemyMedium.png");
+	enemyTexHard.loadFromFile("Resources/enemyHard.png");
 	bulletTex.loadFromFile("Resources/missile.png");
 
 	font.loadFromFile("Resources/arialbd.ttf");

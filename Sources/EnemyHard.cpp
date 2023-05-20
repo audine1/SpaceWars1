@@ -1,4 +1,4 @@
-#include "EnemyHard.h"
+﻿#include "EnemyHard.h"
 
 EnemyHard::EnemyHard() {}
 
@@ -14,9 +14,34 @@ EnemyHard::EnemyHard(Texture* texture, Vector2u windowSize)
 
 EnemyHard::~EnemyHard() {}
 
-inline void EnemyHard::Move()
+void EnemyHard::Move(RenderWindow& window)
 {
-	shape.move(-7.f, 0.f);
+	if (individualTimer <= 0.0f)
+	{
+		Vector2f direction = RandomMovement();
+		velocity = direction;
+		individualTimer = rand() % 2 + 1;
+	}
+
+	shape.move(velocity);
+
+	individualTimer -= 0.02f;
+
+	if (shape.getPosition().y <= 0)
+	{
+		velocity.y = 1;
+	}
+	if (shape.getPosition().y >= window.getSize().y - shape.getGlobalBounds().height)
+	{
+		velocity.y = -1;
+	}
+}
+
+Vector2f EnemyHard::RandomMovement()
+{
+	float directionY = (rand() % 2 == 0) ? 1.0f : -1.0f;
+	float movementY = 2.0f * directionY;
+	return Vector2f(-6.f, movementY);
 }
 
 void EnemyHard::Shoot() {}

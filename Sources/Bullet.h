@@ -8,8 +8,8 @@ private:
 	Sprite shape;
 public:
 
-	inline Bullet(Texture* texture, Vector2f pos);
-	inline ~Bullet();
-	inline Sprite GetShape();
-	inline void Move();
+	Bullet(Texture* texture, Vector2f pos);
+	~Bullet();
+	Sprite GetShape();
+	void Move();
 };

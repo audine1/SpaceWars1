@@ -22,7 +22,7 @@ void Game::Run(RenderWindow& window, int& selectedEnemyType)
 			Shoot();
 			Bullets(window);
 			EnemySpawner(window, selectedEnemyType);
-			Enemys();
+			Enemys(window);
 			//UI Update
 			resources.scoreText.setString("Score: " + to_string(player.GetScore()));
 		}
@@ -121,25 +121,25 @@ void Game::EnemySpawner(RenderWindow& window, int& selectedEnemyType)
 	{
 		if (selectedEnemyType == 0)
 		{
-			enemies.push_back(new EnemyEasy(&resources.enemyTex, window.getSize()));
+			enemies.push_back(new EnemyEasy(&resources.enemyTexEasy, window.getSize()));
 		}
 		else if (selectedEnemyType == 1)
 		{
-			enemies.push_back(new EnemyMedium(&resources.enemyTex, window.getSize()));
+			enemies.push_back(new EnemyMedium(&resources.enemyTexMedium, window.getSize()));
 		}
 		else if (selectedEnemyType == 2)
 		{
-			enemies.push_back(new EnemyHard(&resources.enemyTex, window.getSize()));
+			enemies.push_back(new EnemyHard(&resources.enemyTexHard, window.getSize()));
 		}
 		enemySpawnTimer = 0; //reset timer
 	}
 }
 
-void Game::Enemys()
+void Game::Enemys(RenderWindow &window)
 {
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		enemies[i]->Move();
+		enemies[i]->Move(window);
 
 		if (enemies[i]->GetEnemyShape().getPosition().x <= 0 - enemies[i]->GetEnemyShape().getGlobalBounds().width)
 		{
@@ -184,6 +184,7 @@ void Game::Draw(RenderWindow& window)
 
 	if (player.GetHP() <= 0)
 	{
+		resources.hpText.setString(to_string(player.GetHP()) + "/" + to_string(player.GetHPMax()));
 		window.draw(resources.gameOverText);
 		window.draw(resources.escapeMenu);
 	}
